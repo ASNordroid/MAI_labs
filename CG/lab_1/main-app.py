@@ -1,3 +1,5 @@
+# Соболев А. Ю. М8О-307Б
+# 17. x = aφ - b*sinφ, y = a - b*cosφ, a<b, A<=φ<=B
 import numpy as np
 from bokeh.io             import curdoc
 from bokeh.layouts        import row, column, widgetbox
@@ -16,18 +18,18 @@ def update(attr, old, new):
         pass
 
 # default values
-phi = np.linspace(-10.0, 10.0, 1000)
-xs = 1.0 * phi - 1.0 * np.sin(phi)
-ys = 1.0 - 1.0 * np.cos(phi)
+phi = np.linspace(-30.0, 30.0, 1000)
+xs = 1.0 * phi - 2.0 * np.sin(phi)
+ys = 1.0 - 2.0 * np.cos(phi)
 
 source = ColumnDataSource(data=dict(x=xs, y=ys))
 plot = Figure(plot_width=800, title='Lab1', x_range=(-20, 20), y_range=(-10, 10), tools='crosshair,pan,reset,wheel_zoom', active_scroll='wheel_zoom', toolbar_location=None, x_axis_label='x', y_axis_label='y')
-plot.line(x='x', y='y', source=source, line_width=2, line_color='black', legend='x = a*phi - b*sin(phi) y = a - b*cos(phi)')
+plot.line(x='x', y='y', source=source, line_width=2, line_color='green', legend='x = a*phi - b*sin(phi) y = a - b*cos(phi)')
 
 a = TextInput(title='a', value='1.0')
-b = TextInput(title='b', value='1.0')
-A = TextInput(title='A', value='-10.0')
-B = TextInput(title='B', value='10.0')
+b = TextInput(title='b', value='2.0')
+A = TextInput(title='A', value='-30.0')
+B = TextInput(title='B', value='30.0')
 
 for w in [a, b, A, B]:
     w.on_change('value', update)
